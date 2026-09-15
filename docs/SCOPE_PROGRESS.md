@@ -15,7 +15,7 @@
 | Phase | 名称 | 担当 | 状態 |
 |-------|------|------|------|
 | 1 | 要件定義 | Agent 1 | [x] |
-| 2 | Git管理 | Agent 2 | [ ] 未着手（公開リポジトリ作成時に実施） |
+| 2 | Git管理 | Agent 2 | [x] mion-ai-mama/claude-canva-tokuten（Public） |
 | 3 | フロントエンド基盤 | Agent 3 | [x] |
 | 4 | ページ実装 | Agent 4 | [x] |
 | 5 | 環境構築 | Agent 5 | スキップ（環境変数・依存パッケージなし） |
@@ -25,7 +25,7 @@
 | 9 | フロントエンド実装(API統合) | Agent 9 | スキップ（API連携なし） |
 | 10 | E2Eテスト | Agent 10 | [x] Playwrightで実施 |
 | 11 | ローカル動作確認 | Agent 11 | [x] 320 / 375 / 390 / 1280px で確認 |
-| 12 | デプロイ | Agent 12 | [ ] 未着手（GitHub Pages公開） |
+| 12 | デプロイ | Agent 12 | [x] GitHub Pages 公開済み（2026-09-16） |
 
 ## ページ管理表
 
@@ -44,7 +44,14 @@
 | P-011 | ご案内（AIマネタイズの教科書） | [x] |
 | P-012 | 参考情報・免責事項 | [x] |
 
-## 検証結果（2026-09-15 / Chromium）
+## 公開情報
+
+- リポジトリ: https://github.com/mion-ai-mama/claude-canva-tokuten （Public）
+- 公開ページ: https://mion-ai-mama.github.io/claude-canva-tokuten/
+- ブランチ `main` / `/ (root)` を GitHub Pages が配信
+- `index.html` の `og:image` / `og:url` は上記URLで設定済み（書き換え不要）
+
+## 検証結果（2026-09-16 / Chromium・公開URLで再確認）
 
 | 項目 | 結果 |
 |---|---|
@@ -71,4 +78,4 @@
 | `ogp.webp` | SNSシェア画像（1200×630px推奨） | [ ] |
 | `cta-banner.png` | ご案内バナー | [x] 配置済み |
 
-公開URLが確定したら `index.html` の `og:image` / `og:url` を書き換える。
+画像を `assets/` に置いて `git add -A && git commit && git push` すると、数分で公開ページに反映される。

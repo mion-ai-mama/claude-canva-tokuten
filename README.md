@@ -5,6 +5,11 @@ HTML / CSS / JavaScript だけで作られた静的サイトで、ビルド作�
 
 ---
 
+## 0. 公開先
+
+- 公開ページ: <https://mion-ai-mama.github.io/claude-canva-tokuten/>
+- リポジトリ: <https://github.com/mion-ai-mama/claude-canva-tokuten>（Public）
+
 ## 1. プロジェクト概要
 
 | 項目 | 内容 |
