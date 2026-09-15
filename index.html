@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude×Canva連携 完全ガイド｜画像の土台を作って、Canvaで仕上げる実践手順</title>
+<meta name="description" content="ClaudeとCanvaの連携方法から、用途別のコピペ指示文、実際に試して分かった修正ポイントまで解説します。AI初心者さん向け、スマホで読める実践ガイドです。">
+
+<!-- OGP（SNSでシェアされたときの表示設定。URLはREADME §6 を参照） -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claude×Canva連携 完全ガイド">
+<meta property="og:description" content="ClaudeとCanvaの連携方法から、用途別のコピペ指示文、実際に試して分かった修正ポイントまで解説します。">
+<meta property="og:image" content="https://mion-ai-mama.github.io/claude-canva-tokuten/assets/ogp.webp">
+<meta property="og:url" content="https://mion-ai-mama.github.io/claude-canva-tokuten/">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F28A32">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23F28A32'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle'%3E%F0%9F%8E%A8%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<main id="main">
+
+  <!-- ==========================================================
+       1. ファーストビュー
+  ========================================================== -->
+  <section class="hero" id="hero" aria-label="ページ紹介">
+    <div class="wrap">
+      <p class="hero__label">AI初心者さん向け</p>
+      <h1 class="hero__title">
+        Claude<span class="accent">×</span>Canva<br>連携 完全ガイド
+      </h1>
+      <p class="hero__subtitle">
+        画像の土台を作って、<br>Canvaで仕上げる実践手順
+      </p>
+
+      <figure class="media" style="--ar: 16 / 9;">
+        <img class="media__img" src="assets/hero-image.webp"
+             alt="Claude×Canva連携 完全ガイドのメイン画像"
+             data-placeholder="ここにトップ画像を入れてください">
+      </figure>
+
+      <p class="hero__desc">
+        ClaudeとCanvaを連携すると、Claudeにお願いしたデザイン案を、そのままCanvaで開いて編集できます。
+      </p>
+      <p class="hero__desc">
+        このガイドでは、詳しい連携方法から、用途別のコピペ用プロンプト、実際に試して分かった修正ポイントまでまとめました。
+      </p>
+
+      <a class="btn btn--wide" href="#connect">さっそく連携してみる</a>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       目次
+  ========================================================== -->
+  <div class="wrap">
+    <nav class="toc" aria-labelledby="toc-title">
+      <h2 class="toc__title" id="toc-title"><span class="icon" aria-hidden="true">📖</span>このページの目次</h2>
+      <ul class="toc__list">
+        <li><a href="#about">Claude×Canvaでできること</a></li>
+        <li><a href="#connect">ClaudeとCanvaの連携方法</a></li>
+        <li><a href="#basic">基本の使い方</a></li>
+        <li><a href="#prompts">用途別コピペ用プロンプト</a></li>
+        <li><a href="#trouble">生成結果がうまくいかないとき</a></li>
+        <li><a href="#checklist">Canvaで仕上げるポイント</a></li>
+        <li><a href="#chrome">追加テクニック：Claude in Chrome</a></li>
+        <li><a href="#summary">まとめ</a></li>
+        <li><a href="#info">参考情報・免責事項</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- ==========================================================
+       2. 最初に知っておいてほしいこと
+  ========================================================== -->
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <h2 class="section__title" id="about-title">
+        <span class="icon" aria-hidden="true">🌸</span>Claude×Canvaでできること
+      </h2>
+
+      <p>
+        ClaudeとCanvaを連携すると、チャットで指示を出してデザイン案を作り、気に入ったものをCanvaで開けます。
+      </p>
+      <p>作成できるデザインの例は次のとおりです。</p>
+
+      <ul class="lead-list">
+        <li>Instagram投稿の表紙</li>
+        <li>横長バナー</li>
+        <li>LPのヘッダー画像</li>
+        <li>YouTubeサムネイル</li>
+        <li>プレゼンテーションなど</li>
+      </ul>
+
+      <p>生成されたデザインは、Canva上で写真、文字、色、配置を変更できます。</p>
+
+      <div class="note">
+        <p class="note__title"><span class="icon" aria-hidden="true">💡</span>ここが大事なポイントです</p>
+        <p>
+          Claudeが出したデザインは、基本的に「完成品」ではなく、Canvaで編集するための土台として使うのがおすすめです。
+        </p>
+        <p>
+          生成結果には、指定していない英語、ダミーURL、意味不明な文字が入ることがあります。必ず内容を確認してから使用してください。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       3. 連携方法
+  ========================================================== -->
+  <section class="section section--tinted" id="connect" aria-labelledby="connect-title">
+    <div class="wrap">
+      <h2 class="section__title" id="connect-title">
+        <span class="icon" aria-hidden="true">🔗</span>ClaudeとCanvaの連携方法
+      </h2>
+
+      <div class="card">
+        <div class="card__head">
+          <span class="card__num">STEP1</span>
+          <h3 class="card__title">「＋」ボタンを押す</h3>
+        </div>
+        <p>Claudeを開き、チャット画面の「＋」ボタンを押します。</p>
+        <figure class="media" style="--ar: 4 / 3;">
+          <img class="media__img" src="assets/connection-01.webp"
+               alt="Claudeのチャット画面で「＋」ボタンを押す様子" loading="lazy"
+               data-placeholder="ここにSTEP1の画面画像を入れてください">
+        </figure>
+      </div>
+
+      <div class="card">
+        <div class="card__head">
+          <span class="card__num">STEP2</span>
+          <h3 class="card__title">「コネクタを追加」を押す</h3>
+        </div>
+        <p>「コネクタ」を選び、「コネクタを追加」を押します。</p>
+        <figure class="media" style="--ar: 4 / 3;">
+          <img class="media__img" src="assets/connection-02.webp"
+               alt="「コネクタ」から「コネクタを追加」を押す様子" loading="lazy"
+               data-placeholder="ここにSTEP2の画面画像を入れてください">
+        </figure>
+      </div>
+
+      <div class="card">
+        <div class="card__head">
+          <span class="card__num">STEP3</span>
+          <h3 class="card__title">「コネクタを参照」を選ぶ</h3>
+        </div>
+        <p>「コネクタを参照」を選びます。</p>
+        <figure class="media" style="--ar: 4 / 3;">
+          <img class="media__img" src="assets/connection-03.webp"
+               alt="「コネクタを参照」を選ぶ様子" loading="lazy"
+               data-placeholder="ここにSTEP3の画面画像を入れてください">
+        </figure>
+      </div>
+
+      <div class="card">
+        <div class="card__head">
+          <span class="card__num">STEP4</span>
+          <h3 class="card__title">Canvaを「連携」する</h3>
+        </div>
+        <p>Canvaを見つけて「連携」を押します。</p>
+        <figure class="media" style="--ar: 4 / 3;">
+          <img class="media__img" src="assets/connection-04.webp"
+               alt="一覧からCanvaを見つけて「連携」を押す様子" loading="lazy"
+               data-placeholder="ここにSTEP4の画面画像を入れてください">
+        </figure>
+      </div>
+
+      <div class="card">
+        <div class="card__head">
+          <span class="card__num">STEP5</span>
+          <h3 class="card__title">Canva側で「許可」を押す</h3>
+        </div>
+        <p>Canvaの認証画面で「許可」を押します。</p>
+        <figure class="media" style="--ar: 4 / 3;">
+          <img class="media__img" src="assets/connection-05.webp"
+               alt="Canvaの認証画面で「許可」を押す様子" loading="lazy"
+               data-placeholder="ここにSTEP5の画面画像を入れてください">
+        </figure>
+      </div>
+
+      <div class="card">
+        <div class="card__head">
+          <span class="card__num">STEP6</span>
+          <h3 class="card__title">新しいチャットでコネクタをオンにする</h3>
+        </div>
+        <p>Claudeの新しいチャットを開き、Canvaコネクタをオンにします。</p>
+      </div>
+
+      <div class="note">
+        <p class="note__title"><span class="icon" aria-hidden="true">📝</span>補足</p>
+        <p>画面の名称や配置は、使用端末、プラン、機能更新によって変わる場合があります。</p>
+        <p>Canvaが表示されない場合は、ClaudeとCanvaの両方へ正しいアカウントでログインしているか確認してください。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       4. 基本の使い方
+  ========================================================== -->
+  <section class="section" id="basic" aria-labelledby="basic-title">
+    <div class="wrap">
+      <h2 class="section__title" id="basic-title">
+        <span class="icon" aria-hidden="true">🧭</span>文章案で終わらせず、<br>デザインを作ってもらうコツ
+      </h2>
+
+      <p>
+        Claudeへ「Instagram投稿を考えて」と伝えるだけでは、文章や構成案だけが返ってくる場合があります。
+      </p>
+      <p>Canvaのデザインを実際に作ってもらいたい場合は、次の一文を入れてください。</p>
+
+      <div class="card">
+        <div class="prompt-box">
+          <p class="prompt" id="prompt-common">文章や構成案をテキストで回答するのではなく、Canvaコネクタを使用して、Canvaで編集可能なデザインを実際に作成してください。</p>
+          <button class="copy-btn" type="button" data-copy="prompt-common">
+            <span aria-hidden="true">📋</span>コピーする
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       5. 用途別コピペ用プロンプト
+  ========================================================== -->
+  <section class="section section--tinted" id="prompts" aria-labelledby="prompts-title">
+    <div class="wrap">
+      <h2 class="section__title" id="prompts-title">
+        <span class="icon" aria-hidden="true">📋</span>用途別コピペ用プロンプト
+      </h2>
+      <p class="small">
+        使いたいものを選び、「コピーする」を押してClaudeのチャットに貼り付けてください。
+      </p>
+
+      <!-- 5-1 -->
+      <h3 class="sub-title"><span class="icon" aria-hidden="true">🌼</span>5-1．Instagramカルーセル表紙</h3>
+      <div class="card">
+        <dl class="prompt-box__meta">
+            <div><dt>使用目的</dt><dd>AI初心者向けInstagram投稿の表紙を作成します。</dd></div>
+            <div><dt>完成サイズ</dt><dd>1080×1350px（縦4:5）</dd></div>
+          </dl>
+
+        <div class="prompt-box">
+          <details class="prompt-details">
+            <summary>プロンプト全文をひらく</summary>
+            <p class="prompt" id="prompt-insta">Canvaを使って、Instagramカルーセル投稿の表紙画像を新規作成してください。
+
+文章や構成案をテキストで回答するのではなく、Canvaコネクタを使用して、Canvaで編集できるデザインを実際に作成してください。
+
+【サイズ】
+Instagram縦投稿
+1080×1350px、縦4:5
+
+【表紙に入れる文字】
+40代から始める
+AIおうちワーク
+3STEP
+
+【レイアウト】
+・「AIおうちワーク」を最も大きくする
+・「3STEP」はオレンジ色で目立たせる
+・人物または人物イラストを後から配置できる空間を作る
+・Instagramのプロフィール一覧でも読める大きな文字にする
+・余白を残しながらも、寂しく見えない構成にする
+
+【デザイン】
+・明るいベージュを基調にする
+・オレンジとくすみピンクをアクセントにする
+・40〜50代女性向けの、親しみやすく上品なデザイン
+・文字は読みやすい日本語のゴシック体にする
+
+【厳守事項】
+・指定した3つの文章以外は入れない
+・英語、URL、ロゴ、ボタン、ブランド名を追加しない
+・意味不明な文字やダミーテキストを入れない
+・文字をCanvaで編集できる状態にする
+
+レイアウトの異なるデザインを4案作成してください。</p>
+          </details>
+          <button class="copy-btn" type="button" data-copy="prompt-insta">
+            <span aria-hidden="true">📋</span>コピーする
+          </button>
+        </div>
+
+        <h4 class="sub-title"><span class="icon" aria-hidden="true">🖼</span>実際の結果</h4>
+        <div class="ba">
+          <figure class="ba__item">
+            <figcaption class="ba__label ba__label--before">生成直後</figcaption>
+            <div class="media" style="--ar: 4 / 5;">
+              <img class="media__img" src="assets/instagram-before.webp"
+                   alt="Claudeが生成した直後のInstagram表紙デザイン" loading="lazy"
+                   data-placeholder="ここに生成直後のInstagram表紙画像を入れてください">
+            </div>
+          </figure>
+          <figure class="ba__item">
+            <figcaption class="ba__label ba__label--after">Canvaで編集後</figcaption>
+            <div class="media" style="--ar: 4 / 5;">
+              <img class="media__img" src="assets/instagram-after.webp"
+                   alt="Canvaで文字や素材を整えたあとのInstagram表紙デザイン" loading="lazy"
+                   data-placeholder="ここにCanva編集後のInstagram表紙画像を入れてください">
+            </div>
+          </figure>
+        </div>
+
+        <div class="note">
+          <p class="note__title"><span class="icon" aria-hidden="true">📝</span>補足</p>
+          <p>
+            生成結果の中から、文字が正確で、編集しやすいレイアウトを選びます。今回の例では、人物イラスト、文字、パソコンアイコンをCanvaで調整しました。
+          </p>
+        </div>
+      </div>
+
+      <!-- 5-2 -->
+      <h3 class="sub-title"><span class="icon" aria-hidden="true">🌼</span>5-2．オンライン講座の横長バナー</h3>
+      <div class="card">
+        <dl class="prompt-box__meta">
+            <div><dt>使用目的</dt><dd>SNS、ブログ、案内ページなどで使用できる横長バナーを作成します。</dd></div>
+            <div><dt>完成サイズ</dt><dd>1200×628px（横長）</dd></div>
+          </dl>
+
+        <div class="prompt-box">
+          <details class="prompt-details">
+            <summary>プロンプト全文をひらく</summary>
+            <p class="prompt" id="prompt-banner">Canvaを使って、AI初心者向けオンライン講座の横長告知バナーを新規作成してください。
+
+文章や構成案をテキストで回答するのではなく、Canvaコネクタを使用して、Canvaで編集可能なデザインを実際に作成してください。
+
+【サイズ】
+横1200×628px
+
+【掲載する文字】
+AI初心者さん向け
+AIで始める
+おうちワーク入門
+無料オンライン講座
+
+【レイアウト】
+・左側に文字を配置する
+・「AIで始める おうちワーク入門」を最も大きくする
+・「無料オンライン講座」はオレンジの角丸ラベルに白文字で入れる
+・右側に人物または人物イラストを後から配置できる空間を作る
+・一瞬表示しても文字が読める、太く大きな文字にする
+
+【デザイン】
+・明るいベージュを基調にする
+・オレンジとくすみピンクをアクセントにする
+・40〜50代女性向けの、親しみやすく上品なデザイン
+・文字は読みやすい日本語のゴシック体にする
+
+【厳守事項】
+・指定した4つの文章以外は入れない
+・英語、URL、ロゴ、日付、価格、ブランド名を追加しない
+・意味不明な文字やダミーテキストを入れない
+・文字をCanvaで編集できる状態にする
+
+レイアウトの異なるデザインを4案作成してください。</p>
+          </details>
+          <button class="copy-btn" type="button" data-copy="prompt-banner">
+            <span aria-hidden="true">📋</span>コピーする
+          </button>
+        </div>
+
+        <h4 class="sub-title"><span class="icon" aria-hidden="true">🖼</span>実際の結果</h4>
+        <div class="ba">
+          <figure class="ba__item">
+            <figcaption class="ba__label ba__label--before">生成直後</figcaption>
+            <div class="media" style="--ar: 1200 / 628;">
+              <img class="media__img" src="assets/banner-before.webp"
+                   alt="Claudeが生成した直後の横長バナー" loading="lazy"
+                   data-placeholder="ここに生成直後の横長バナー画像を入れてください">
+            </div>
+          </figure>
+          <figure class="ba__item">
+            <figcaption class="ba__label ba__label--after">Canvaで編集後</figcaption>
+            <div class="media" style="--ar: 1200 / 628;">
+              <img class="media__img" src="assets/banner-after.webp"
+                   alt="Canvaで日本語と配色を整えたあとの横長バナー" loading="lazy"
+                   data-placeholder="ここにCanva編集後の横長バナー画像を入れてください">
+            </div>
+          </figure>
+        </div>
+
+        <div class="note">
+          <p class="note__title"><span class="icon" aria-hidden="true">📝</span>補足</p>
+          <p>
+            生成直後は英語のダミーテキストが入る場合があります。Canvaで正しい日本語へ変更し、人物素材や配色を調整してください。
+          </p>
+        </div>
+      </div>
+
+      <!-- 5-3 -->
+      <h3 class="sub-title">
+        <span class="icon" aria-hidden="true">🌼</span>5-3．LPヘッダー画像<span class="tag">応用プロンプト</span>
+      </h3>
+      <div class="card">
+        <dl class="prompt-box__meta">
+            <div><dt>使用目的</dt><dd>女性向けオンライン講座のLPヘッダー画像を作成します。</dd></div>
+            <div><dt>完成サイズ</dt><dd>1920×1080px（16:9）</dd></div>
+          </dl>
+
+        <div class="prompt-box">
+          <details class="prompt-details">
+            <summary>プロンプト全文をひらく</summary>
+            <p class="prompt" id="prompt-lp">Canvaを使って、女性向けオンライン講座のLPヘッダー画像を新規作成してください。
+
+文章や構成案をテキストで回答するのではなく、Canvaコネクタを使用して、Canvaで編集可能なデザインを実際に作成してください。
+
+【サイズ】
+横1920×1080px、16:9
+
+【掲載する文字】
+忙しいママのための
+AIおうちワーク無料講座
+知識ゼロから、自分に合った働き方を見つけよう
+無料で参加する
+
+【レイアウト】
+・左側にキャッチコピーと説明文を配置する
+・右側に女性の写真を後から入れられる大きな空間を作る
+・「AIおうちワーク無料講座」を最も大きくする
+・「無料で参加する」はオレンジのボタン風デザインにする
+
+【デザイン】
+・白と明るいベージュを基調にする
+・オレンジとくすみピンクをアクセントにする
+・女性向けで、親しみやすく信頼感のあるデザイン
+・文字は読みやすい日本語のゴシック体にする
+
+【厳守事項】
+・指定した文字以外は入れない
+・架空の実績、人数、URL、日付、価格、ロゴを追加しない
+・意味不明な文字や英語を追加しない
+・文字をCanvaで編集できる状態にする
+
+レイアウトの異なるデザインを4案作成してください。</p>
+          </details>
+          <button class="copy-btn" type="button" data-copy="prompt-lp">
+            <span aria-hidden="true">📋</span>コピーする
+          </button>
+        </div>
+
+        <div class="note">
+          <p class="note__title"><span class="icon" aria-hidden="true">⚠️</span>注意</p>
+          <p>
+            生成結果によっては、LPヘッダーではなく縦長の商品広告などが表示される場合があります。サイズと内容を必ず確認し、必要に応じてCanvaで修正してください。
+          </p>
+        </div>
+      </div>
+
+      <!-- 5-4 -->
+      <h3 class="sub-title">
+        <span class="icon" aria-hidden="true">🌼</span>5-4．YouTubeサムネイル<span class="tag">応用プロンプト</span>
+      </h3>
+      <div class="card">
+        <dl class="prompt-box__meta">
+            <div><dt>使用目的</dt><dd>AI初心者向けYouTube動画のサムネイルを作成します。</dd></div>
+            <div><dt>完成サイズ</dt><dd>1280×720px（16:9）</dd></div>
+          </dl>
+
+        <div class="prompt-box">
+          <details class="prompt-details">
+            <summary>プロンプト全文をひらく</summary>
+            <p class="prompt" id="prompt-thumb">Canvaを使って、AI初心者向けYouTube動画のサムネイルを新規作成してください。
+
+文章やタイトル案をテキストで回答するのではなく、Canvaコネクタを使用して、Canvaで編集可能なデザインを実際に作成してください。
+
+【サイズ】
+1280×720px、16:9
+
+【掲載する文字】
+40代主婦
+AIで働き方が変わった
+
+【レイアウト】
+・左側にタイトルを大きく配置する
+・右側に表情のある女性の写真を後から入れられる空間を作る
+・「AI」を最も目立たせる
+・スマートフォンの小さな画面でも読める文字サイズにする
+
+【デザイン】
+・ベージュを基調にする
+・オレンジとくすみピンクをアクセントにする
+・親しみやすいが、クリックしたくなるメリハリのあるデザイン
+・文字は太く読みやすい日本語のゴシック体にする
+
+【厳守事項】
+・指定した2つの文章以外は入れない
+・英語、URL、ロゴ、日付、価格、ブランド名を追加しない
+・意味不明な文字やダミーテキストを入れない
+・文字をCanvaで編集できる状態にする
+
+レイアウトの異なるデザインを4案作成してください。</p>
+          </details>
+          <button class="copy-btn" type="button" data-copy="prompt-thumb">
+            <span aria-hidden="true">📋</span>コピーする
+          </button>
+        </div>
+
+        <div class="note">
+          <p class="note__title"><span class="icon" aria-hidden="true">⚠️</span>注意</p>
+          <p>
+            使用前に、タイトルが正しいこと、人物素材が不自然でないこと、小さな画面でも読めることを確認してください。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       6. うまくいかないとき
+  ========================================================== -->
+  <section class="section" id="trouble" aria-labelledby="trouble-title">
+    <div class="wrap">
+      <h2 class="section__title" id="trouble-title">
+        <span class="icon" aria-hidden="true">🛠</span>生成結果がうまくいかないとき
+      </h2>
+      <p class="small">
+        当てはまるものをひらいて、中の文をコピーし、そのままClaudeへ送ってください。
+      </p>
+
+      <details class="faq">
+        <summary>文章案だけ返ってきた場合</summary>
+        <div class="faq__body">
+          <p class="prompt" id="fix-text">文章案ではなく、Canvaコネクタを使用して、Canvaで編集可能なデザインを実際に作成してください。</p>
+          <button class="copy-btn" type="button" data-copy="fix-text">
+            <span aria-hidden="true">📋</span>コピーする
+          </button>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>英語やダミーURLが入った場合</summary>
+        <div class="faq__body">
+          <p class="prompt" id="fix-english">指定した日本語以外の文字をすべて削除してください。英語、ダミーURL、ロゴ、ブランド名は追加しないでください。</p>
+          <button class="copy-btn" type="button" data-copy="fix-english">
+            <span aria-hidden="true">📋</span>コピーする
+          </button>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>日本語が文字化けした場合</summary>
+        <div class="faq__body">
+          <p class="prompt" id="fix-garbled">意味不明な文字を削除し、指定した日本語を正確に入力してください。読みやすい日本語のゴシック体を使用してください。</p>
+          <button class="copy-btn" type="button" data-copy="fix-garbled">
+            <span aria-hidden="true">📋</span>コピーする
+          </button>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>写真を入れる場所がない場合</summary>
+        <div class="faq__body">
+          <p class="prompt" id="fix-space">文字や装飾を左側へ移動し、右側に人物の切り抜き写真を配置できる十分な空間を作ってください。</p>
+          <button class="copy-btn" type="button" data-copy="fix-space">
+            <span aria-hidden="true">📋</span>コピーする
+          </button>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>サイズが違う場合</summary>
+        <div class="faq__body">
+          <p class="prompt" id="fix-size">現在の内容を維持したまま、横1200×628pxのバナーとして作り直してください。縦長にはしないでください。</p>
+          <button class="copy-btn" type="button" data-copy="fix-size">
+            <span aria-hidden="true">📋</span>コピーする
+          </button>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       7. Canvaで仕上げるポイント
+  ========================================================== -->
+  <section class="section section--tinted" id="checklist" aria-labelledby="checklist-title">
+    <div class="wrap">
+      <h2 class="section__title" id="checklist-title">
+        <span class="icon" aria-hidden="true">🎀</span>Canvaで仕上げるポイント
+      </h2>
+      <p class="small">タップでチェックを付けたり外したりできます。</p>
+
+      <div class="card">
+        <ul class="checklist">
+          <li><label class="check"><input type="checkbox"><span>指定していない英語を削除した</span></label></li>
+          <li><label class="check"><input type="checkbox"><span>ダミーURLを削除した</span></label></li>
+          <li><label class="check"><input type="checkbox"><span>日本語の文字化けがない</span></label></li>
+          <li><label class="check"><input type="checkbox"><span>タイトルが一瞬で読める</span></label></li>
+          <li><label class="check"><input type="checkbox"><span>人物や商品画像が不自然ではない</span></label></li>
+          <li><label class="check"><input type="checkbox"><span>色を3〜4色程度に絞った</span></label></li>
+          <li><label class="check"><input type="checkbox"><span>スマートフォンでも文字が読める</span></label></li>
+          <li><label class="check"><input type="checkbox"><span>存在しない実績や情報を追加していない</span></label></li>
+          <li><label class="check"><input type="checkbox"><span>商用利用する場合は素材の利用条件を確認した</span></label></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       8. 追加テクニック：Claude in Chrome
+  ========================================================== -->
+  <section class="section" id="chrome" aria-labelledby="chrome-title">
+    <div class="wrap">
+      <h2 class="section__title" id="chrome-title">
+        <span class="icon" aria-hidden="true">🧩</span>Canva上の修正も<br>AIにお願いする方法
+      </h2>
+
+      <p>
+        Claude in Chromeを利用できる環境では、Canvaで開いたデザインの文字変更、配色調整、写真の差し替えなどを依頼できる場合があります。
+      </p>
+      <p>
+        今回の完成例では、Claude×Canvaで土台を作成したあと、Canva上の修正をClaude in Chromeへ依頼しました。
+      </p>
+
+      <div class="card">
+        <h3 class="card__title">修正用プロンプト例</h3>
+        <div class="prompt-box">
+          <details class="prompt-details">
+            <summary>プロンプト全文をひらく</summary>
+            <p class="prompt" id="prompt-chrome">現在Canvaで開いているデザインを直接編集してください。
+
+・指定した日本語以外の文字を削除
+・タイトルを太い日本語ゴシック体に変更
+・タイトルを濃い茶色に変更
+・重要な言葉をオレンジで強調
+・写真スペースに指定した人物素材を配置
+・全体をベージュ、茶色、オレンジ、くすみピンクで統一
+・URL、英語、ロゴ、新しい文章は追加しない
+
+デザイン全体を作り直さず、現在のレイアウトを活かして調整してください。</p>
+          </details>
+          <button class="copy-btn" type="button" data-copy="prompt-chrome">
+            <span aria-hidden="true">📋</span>コピーする
+          </button>
+        </div>
+      </div>
+
+      <div class="note note--soft">
+        <p class="note__title"><span class="icon" aria-hidden="true">⚠️</span>注意事項</p>
+        <p>
+          Claude in Chromeの提供状況、利用条件、操作できる範囲は、アカウントや時期によって異なる場合があります。
+        </p>
+        <p>利用できない人は、同じ修正をCanva上で手動で行ってください。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       9. まとめ
+  ========================================================== -->
+  <section class="section section--tinted" id="summary" aria-labelledby="summary-title">
+    <div class="wrap">
+      <h2 class="section__title" id="summary-title">
+        <span class="icon" aria-hidden="true">🌷</span>AIに全部任せるのではなく、<br>得意な部分を任せよう
+      </h2>
+
+      <p>
+        Claude×Canvaは、何もない状態からデザインの土台やアイデアを作るときに活用できます。
+      </p>
+      <p>
+        生成されたデザインを確認し、写真、文字、色をCanvaで自分好みに整えることで、SNS投稿やバナー制作などに活かせます。
+      </p>
+      <p>
+        まずは、このガイドのプロンプトをコピーして、Instagram投稿の表紙から試してみてください。
+      </p>
+
+      <div class="note">
+        <p>AIを上手に取り入れて、できることの幅を少しずつ広げていきましょう。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       CTA
+  ========================================================== -->
+  <section class="cta" id="cta" aria-labelledby="cta-title">
+    <div class="wrap">
+      <h2 class="cta__title" id="cta-title">もっとAIを活かしたい方へ</h2>
+      <p class="cta__text">
+        デザインづくりに慣れてきたら、次は「AIを使って何ができるか」を広げてみませんか。
+      </p>
+      <p class="cta__text">
+        <span class="cta__highlight">『AIマネタイズの教科書』</span>では、AIを使って働き方の選択肢を広げたい方へ向けた内容を、無料でお届けしています。
+      </p>
+      <a href="https://sub.aione.co.jp/line/open/ErxG3f10mmcK?mtid=8LTecV7UlNz5"
+         target="_blank" rel="noopener noreferrer">
+        <img class="cta__banner" src="assets/cta-banner.png"
+             alt="無料プレゼント AIマネタイズ教科書。AIで働き方の選択肢を広げたい方へ。LINE登録はこちら"
+             loading="lazy">
+      </a>
+      <a class="btn btn--wide"
+         href="https://sub.aione.co.jp/line/open/ErxG3f10mmcK?mtid=8LTecV7UlNz5"
+         target="_blank" rel="noopener noreferrer">AIマネタイズの教科書を受け取る</a>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       10. 参考情報・免責事項
+  ========================================================== -->
+  <section class="section" id="info" aria-labelledby="info-title">
+    <div class="wrap">
+      <h2 class="section__title" id="info-title">
+        <span class="icon" aria-hidden="true">📄</span>参考情報・免責事項
+      </h2>
+
+      <ul class="info-list small">
+        <li>本ページは2026年9月15日時点の情報と実際の検証結果をもとに作成しています。</li>
+        <li>ClaudeおよびCanvaの画面、名称、機能、利用条件は変更される可能性があります。</li>
+        <li>生成されるデザインの品質や内容は毎回異なります。</li>
+        <li>AIが生成した文字、URL、人物、商品情報は必ず確認してください。</li>
+        <li>商用利用する場合は、利用する素材、画像、フォント、各サービスの最新利用規約を確認してください。</li>
+        <li>本ガイドは特定の収益や仕事の獲得を保証するものではありません。</li>
+        <li>Claude in Chromeの利用可否と対応機能はアカウントによって異なる可能性があります。</li>
+      </ul>
+
+      <h3 class="sub-title"><span class="icon" aria-hidden="true">🔗</span>参照リンク</h3>
+      <ul class="link-list small">
+        <li>
+          Canva AI Connector<br>
+          <a href="https://www.canva.com/ai-connector/" target="_blank" rel="noopener noreferrer">https://www.canva.com/ai-connector/</a>
+        </li>
+        <li>
+          Canva AI Connectorヘルプ<br>
+          <a href="https://www.canva.com/help/mcp-agent-setup/" target="_blank" rel="noopener noreferrer">https://www.canva.com/help/mcp-agent-setup/</a>
+        </li>
+        <li>
+          Claude公式ヘルプ<br>
+          <a href="https://support.anthropic.com/" target="_blank" rel="noopener noreferrer">https://support.anthropic.com/</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Claude×Canva連携 完全ガイド</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden>コピーしました！</div>
+<button class="to-top" id="to-top" type="button" aria-label="ページの先頭へ戻る" hidden>▲</button>
+
+</body>
+</html>
