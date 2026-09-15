@@ -391,6 +391,41 @@ input:focus-visible {
   color: var(--color-white);
 }
 
+/* ---------- 書き換えガイド ---------- */
+.guide {
+  margin-block: 1rem;
+  padding: 0.9rem 1rem;
+  border-left: 4px solid var(--color-pink);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg);
+}
+.guide__title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.guide ul { margin: 0; padding-left: 1.2em; }
+.guide li { margin-bottom: 0.3rem; line-height: 1.75; }
+.guide li:last-child { margin-bottom: 0; }
+/* 幅が足りないときだけ表を横スクロールさせる（ページ全体は横スクロールしない） */
+.size-table { margin-block: 1rem; overflow-x: auto; }
+.size-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.size-table th,
+.size-table td {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--color-border);
+  text-align: left;
+  line-height: 1.6;
+}
+.size-table th { background-color: var(--color-beige); font-weight: 700; }
+
 /* ---------- プロンプト ---------- */
 
 .prompt-box { margin-block: 1rem; }
@@ -454,6 +489,14 @@ input:focus-visible {
 .prompt-details .prompt {
   border-radius: 0;
   padding-top: 0.9rem;
+}
+/* 書き換える場所（〈　〉）を目立たせる */
+.fill {
+  padding: 0 0.15em;
+  border-radius: 4px;
+  background-color: var(--color-white);
+  color: #A05512;
+  font-weight: 700;
 }
 .copy-btn {
   display: inline-flex;

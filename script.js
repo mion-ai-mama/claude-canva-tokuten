@@ -1,8 +1,9 @@
 /* ==========================================================================
    Claude×Canva連携 完全ガイド
    1. 画像が無いときのプレースホルダー表示
-   2. プロンプトのコピー
-   3. ページ先頭へ戻るボタン
+   2. 書き換える場所（〈　〉）の強調
+   3. プロンプトのコピー
+   4. ページ先頭へ戻るボタン
    ========================================================================== */
 
 (function () {
@@ -57,7 +58,45 @@
   }
 
   /* ------------------------------------------------------------------
-     2. プロンプトのコピー
+     2. 書き換える場所（〈　〉）を目立たせる
+        文字そのものは変えないので、コピーされる内容は見た目と同じです。
+     ------------------------------------------------------------------ */
+
+  function highlightFillIns() {
+    var prompts = document.querySelectorAll('.prompt');
+
+    Array.prototype.forEach.call(prompts, function (el) {
+      var text = el.textContent;
+      if (text.indexOf('〈') === -1) {
+        return;
+      }
+
+      var fragment = document.createDocumentFragment();
+      var pattern = /〈[^〉]*〉/g;
+      var last = 0;
+      var match;
+
+      while ((match = pattern.exec(text)) !== null) {
+        if (match.index > last) {
+          fragment.appendChild(document.createTextNode(text.slice(last, match.index)));
+        }
+        var mark = document.createElement('span');
+        mark.className = 'fill';
+        mark.textContent = match[0];
+        fragment.appendChild(mark);
+        last = pattern.lastIndex;
+      }
+      if (last < text.length) {
+        fragment.appendChild(document.createTextNode(text.slice(last)));
+      }
+
+      el.textContent = '';
+      el.appendChild(fragment);
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     3. プロンプトのコピー
      ------------------------------------------------------------------ */
 
   var toast = document.getElementById('toast');
@@ -157,7 +196,7 @@
   }
 
   /* ------------------------------------------------------------------
-     3. ページ先頭へ戻るボタン
+     4. ページ先頭へ戻るボタン
      ------------------------------------------------------------------ */
 
   function watchToTop() {
@@ -180,6 +219,7 @@
   /* ---------------------------------------------------------------- */
 
   watchImages();
+  highlightFillIns();
   watchCopyButtons();
   watchToTop();
 })();
