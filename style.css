@@ -172,7 +172,6 @@ input:focus-visible { outline: 3px solid var(--color-orange); outline-offset: 2p
   line-height: 1.75;
 }
 .hero__desc { margin: 0 0 1.8rem; text-align: left; }
-.hero .media { margin-bottom: 1.6rem; }
 
 /* ---------- ボタン ---------- */
 

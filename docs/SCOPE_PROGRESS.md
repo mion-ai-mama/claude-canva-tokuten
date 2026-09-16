@@ -71,7 +71,6 @@
 
 | ファイル名 | 内容 | 状態 |
 |---|---|---|
-| `hero-image.webp` | ファーストビューのメイン画像 | [ ] |
 | `connection-01〜05.webp` | 連携手順STEP1〜5の画面 | [ ] |
 | `instagram-before.webp` / `instagram-after.webp` | Instagram表紙のビフォーアフター | [ ] |
 | `banner-before.webp` / `banner-after.webp` | 横長バナーのビフォーアフター | [ ] |

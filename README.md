@@ -41,7 +41,6 @@ HTML / CSS / JavaScript だけで作られた静的サイトで、ビルド作�
 ├── script.js       画像プレースホルダー / コピー機能 / 先頭へ戻るボタン
 ├── README.md       このファイル
 └── assets/
-    ├── hero-image.webp        ファーストビューのメイン画像
     ├── connection-01.webp     STEP1（「＋」ボタン）の画面
     ├── connection-02.webp     STEP2（コネクタを追加）の画面
     ├── connection-03.webp     STEP3（コネクタを参照）の画面
@@ -105,8 +104,7 @@ HTMLを書き換える必要はありません。
 - 画像を置くと、その枠が自動的に画像に変わります。
 - 推奨形式は `.webp` です。`.jpg` や `.png` を使いたい場合は、
   `index.html` 内の該当する `src="assets/○○.webp"` を実際のファイル名に変更してください。
-- 縦横比の目安：ファーストビュー 16:9 / 連携手順 4:3 /
-  Instagram表紙 4:5 / 横長バナー 1200:628
+- 縦横比の目安：連携手順 4:3 / Instagram表紙 4:5 / 横長バナー 1200:628
 
 ---
 
