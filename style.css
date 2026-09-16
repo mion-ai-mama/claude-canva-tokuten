@@ -334,6 +334,7 @@ input:focus-visible { outline: 3px solid var(--color-orange); outline-offset: 2p
   color: var(--color-text-soft);
   word-break: break-all;
 }
+.media__zoom { display: block; }
 .media__caption {
   margin: 0;
   font-size: 0.92rem;

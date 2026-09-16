@@ -20,6 +20,16 @@
     }
     img.dataset.replaced = '1';
 
+    // 拡大リンクで囲まれている場合は、リンクごと差し替える（画像が無いのでリンク先も無い）
+    var target = img;
+    if (img.parentNode.className === 'media__zoom') {
+      target = img.parentNode;
+      var caption = target.nextElementSibling;
+      if (caption && caption.className === 'media__caption') {
+        caption.parentNode.removeChild(caption);
+      }
+    }
+
     var box = document.createElement('div');
     box.className = 'media__placeholder';
 
@@ -39,7 +49,7 @@
     box.appendChild(icon);
     box.appendChild(text);
     box.appendChild(file);
-    img.parentNode.replaceChild(box, img);
+    target.parentNode.replaceChild(box, target);
   }
 
   function watchImages() {

@@ -46,6 +46,7 @@ HTML / CSS / JavaScript だけで作られた静的サイトで、ビルド作�
     ├── connection-03.webp     STEP3（コネクタを参照）の画面
     ├── connection-04.webp     STEP4（Canvaを連携）の画面
     ├── connection-05.webp     STEP5（Canvaで許可）の画面
+    ├── connection-06.webp     STEP6（コネクタをオンにする）の画面
     ├── instagram-before.webp  Instagram表紙：生成直後
     ├── instagram-after.webp   Instagram表紙：Canvaで編集後
     ├── banner-before.webp     横長バナー：生成直後
