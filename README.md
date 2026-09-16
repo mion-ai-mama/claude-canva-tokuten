@@ -52,7 +52,8 @@ HTML / CSS / JavaScript だけで作られた静的サイトで、ビルド作�
     ├── banner-before.webp     横長バナー：生成直後
     ├── banner-after.webp      横長バナー：Canvaで編集後
     ├── ogp.webp               SNSでシェアされたときの画像
-    └── cta-banner.png         ページ下部のご案内バナー（配置済み）
+    ├── openchat-banner.webp   オープンチャットのバナー（配置済み）
+    └── cta-banner.png         AIマネタイズの教科書バナー（配置済み）
 ```
 
 ---

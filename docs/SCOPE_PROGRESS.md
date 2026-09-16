@@ -41,7 +41,7 @@
 | P-008 | Canvaで仕上げるポイント | [x] |
 | P-009 | Claude in Chrome | [x] |
 | P-010 | まとめ | [x] |
-| P-011 | ご案内（AIマネタイズの教科書） | [x] |
+| P-011 | ご案内（オープンチャット／AIマネタイズの教科書の2ブロック） | [x] |
 | P-012 | 参考情報・免責事項 | [x] |
 
 ## 公開情報
@@ -76,6 +76,7 @@
 | `instagram-before.webp` / `instagram-after.webp` | Instagram表紙のビフォーアフター | [ ] |
 | `banner-before.webp` / `banner-after.webp` | 横長バナーのビフォーアフター | [ ] |
 | `ogp.webp` | SNSシェア画像（1200×630px推奨） | [ ] |
-| `cta-banner.png` | ご案内バナー | [x] 配置済み |
+| `openchat-banner.webp` | オープンチャットのバナー | [x] 配置済み |
+| `cta-banner.png` | AIマネタイズの教科書バナー | [x] 配置済み |
 
 画像を `assets/` に置いて `git add -A && git commit && git push` すると、数分で公開ページに反映される。
