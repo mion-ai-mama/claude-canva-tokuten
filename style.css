@@ -568,6 +568,22 @@ input:focus-visible { outline: 3px solid var(--color-orange); outline-offset: 2p
 }
 .cta__voices p { margin: 0 0 0.7rem; line-height: 1.7; }
 .cta__voices p:last-child { margin-bottom: 0; }
+.cta__bonus {
+  margin-block: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px dashed var(--color-pink);
+  border-radius: var(--radius-md);
+  background-color: var(--color-note);
+  text-align: left;
+}
+.cta__bonus p { margin: 0; line-height: 1.75; }
+.cta__bonus-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem !important;
+  font-weight: 700;
+}
 .cta__banner {
   display: block;
   width: 100%;
