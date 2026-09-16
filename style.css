@@ -343,23 +343,6 @@ input:focus-visible { outline: 3px solid var(--color-orange); outline-offset: 2p
 }
 
 /* ビフォーアフター */
-.ba {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-block: 1rem;
-}
-.ba__item { margin: 0; }
-.ba__label {
-  display: inline-block;
-  margin-bottom: 0.45rem;
-  padding: 0.18rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-.ba__label--before { background-color: var(--color-beige); color: var(--color-text-soft); }
-.ba__label--after { background-color: var(--color-pink); color: var(--color-white); }
 
 /* ---------- 書き換えガイド ---------- */
 .guide {
@@ -654,14 +637,6 @@ input:focus-visible { outline: 3px solid var(--color-orange); outline-offset: 2p
 /* ---------- 画面が広いとき ---------- */
 
 @media (min-width: 600px) {
-  body {
-    font-size: 17px;
-  }
-
-  .ba {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .section {
     padding-block: 3.2rem;
   }

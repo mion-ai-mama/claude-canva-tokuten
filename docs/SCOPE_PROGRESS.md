@@ -72,8 +72,8 @@
 | ファイル名 | 内容 | 状態 |
 |---|---|---|
 | `connection-01〜06.webp` | 連携手順STEP1〜6の画面 | [x] 配置済み |
-| `instagram-before.webp` / `instagram-after.webp` | Instagram表紙のビフォーアフター | [ ] |
-| `banner-before.webp` / `banner-after.webp` | 横長バナーのビフォーアフター | [ ] |
+| `instagram-after.webp` | Instagram表紙の完成例 | [x] 配置済み |
+| `banner-after.webp` | バナーの完成例 | [x] 配置済み |
 | `ogp.webp` | SNSシェア画像（1200×630px推奨） | [ ] |
 | `openchat-banner.webp` | オープンチャットのバナー | [x] 配置済み |
 | `cta-banner.png` | AIマネタイズの教科書バナー | [x] 配置済み |

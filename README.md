@@ -47,10 +47,8 @@ HTML / CSS / JavaScript だけで作られた静的サイトで、ビルド作�
     ├── connection-04.webp     STEP4（Canvaを連携）の画面
     ├── connection-05.webp     STEP5（Canvaで許可）の画面
     ├── connection-06.webp     STEP6（コネクタをオンにする）の画面
-    ├── instagram-before.webp  Instagram表紙：生成直後
-    ├── instagram-after.webp   Instagram表紙：Canvaで編集後
-    ├── banner-before.webp     横長バナー：生成直後
-    ├── banner-after.webp      横長バナー：Canvaで編集後
+    ├── instagram-after.webp   Instagram表紙：Canvaで仕上げた完成例
+    ├── banner-after.webp      バナー：Canvaで仕上げた完成例
     ├── ogp.webp               SNSでシェアされたときの画像
     ├── openchat-banner.webp   オープンチャットのバナー（配置済み）
     └── cta-banner.png         AIマネタイズの教科書バナー（配置済み）
@@ -105,7 +103,7 @@ HTMLを書き換える必要はありません。
 - 画像を置くと、その枠が自動的に画像に変わります。
 - 推奨形式は `.webp` です。`.jpg` や `.png` を使いたい場合は、
   `index.html` 内の該当する `src="assets/○○.webp"` を実際のファイル名に変更してください。
-- 縦横比の目安：連携手順 4:3 / Instagram表紙 4:5 / 横長バナー 1200:628
+- 縦横比の目安：連携手順はスクリーンショットの実寸／Instagram表紙 4:5 / 横長バナー 1200:628
 
 ---
 
@@ -162,7 +160,6 @@ ClaudeとCanvaは画面や名称が変わることがあります。更新前に
 - 横スクロールが起きない
 - 「コピーする」を押すと「コピーしました！」と表示される
 - 目次から各セクションへ移動できる
-- ビフォーアフターの画像が縦に並ぶ
 - 文字が小さすぎない
 
 ---
