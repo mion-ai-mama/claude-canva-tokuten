@@ -560,14 +560,6 @@ input:focus-visible { outline: 3px solid var(--color-orange); outline-offset: 2p
   font-size: 1.15rem;
   line-height: 1.6;
 }
-.cta__voices {
-  margin-block: 1rem;
-  padding: 0.9rem 1rem;
-  border-radius: var(--radius-md);
-  background-color: var(--color-bg);
-}
-.cta__voices p { margin: 0 0 0.7rem; line-height: 1.7; }
-.cta__voices p:last-child { margin-bottom: 0; }
 .cta__bonus {
   margin-block: 1rem;
   padding: 0.9rem 1rem;
